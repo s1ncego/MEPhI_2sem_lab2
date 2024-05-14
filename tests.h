@@ -55,7 +55,7 @@ void Test(Sequence<int> *sequence) {
     assert((*sequence)[1] == 20);
 
     Array<int> array;
-    LinkedList<int> llist;
+    List<int> llist;
     Sequence<int> *sequence2 =
             sequence == dynamic_cast<List<int> *>(sequence) ? static_cast<Sequence<int> *>(&array)
                                                             : static_cast<Sequence<int> *>(&llist);

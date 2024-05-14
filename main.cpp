@@ -5,11 +5,11 @@ using namespace std;
 
 int main() {
 
-    LinkedList<int> list;
+    /*LinkedList<int> list;
     Array<int> array;
     Test(reinterpret_cast<Sequence<int> *>(&list));
     Test(&array);
-    cout << "\nAll tests compeleted successfully!\n\n";
+    cout << "\nAll tests completed successfully!\n\n";*/
 
     cout << "\n-~~~~==Hello!==~~~~-\n";
     cout << "Press 0 to run Array menu, Press 1 to run LinkedList menu:\n";

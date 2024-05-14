@@ -7,7 +7,7 @@ class Sequence {
 public:
     virtual ~Sequence() = default;
 
-    [[nodiscard]] virtual size_t Size() const = 0;
+    virtual size_t Size() const = 0;
 
     virtual void Clear() = 0;
 
@@ -50,7 +50,7 @@ public:
         size = 0;
     }
 
-    [[nodiscard]] size_t Size() const {
+    size_t Size() const {
         return size;
     }
 
@@ -215,11 +215,11 @@ public:
         delete[] value;
     }
 
-    [[nodiscard]] size_t Size() const {
+    size_t Size() const {
         return size;
     }
 
-    [[nodiscard]] size_t Capacity() const {
+    size_t Capacity() const {
         return capacity;
     }
 
@@ -257,7 +257,7 @@ public:
         if (size == capacity) {
             Reserve(capacity * 2);
         }
-        value[size + 1] = val;
+        value[size++] = val;
     }
 
     void PopBack() {

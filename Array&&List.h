@@ -12,11 +12,11 @@ public:
 
     ~DynamicArray() = default;
 
-    [[nodiscard]] size_t Size() const {
+    size_t Size() const {
         return array.Size();
     }
 
-    [[nodiscard]] size_t Capacity() const {
+    size_t Capacity() const {
         return array.Capacity();
     }
 
@@ -59,7 +59,7 @@ public:
         list = other.list;
     }
 
-    [[nodiscard]] size_t Size() const {
+    size_t Size() const {
         return list.Size();
     }
 
@@ -83,7 +83,7 @@ public:
         return new List<T>(list.GetSubList(start, end));
     }
 
-    [[nodiscard]] size_t GetLength() const {
+    size_t GetLength() const {
         return list.Size();
     }
 

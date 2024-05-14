@@ -40,7 +40,7 @@ public:
         }
     }
 
-    [[nodiscard]] size_t Size() const {
+    size_t Size() const {
         return size;
     }
 

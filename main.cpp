@@ -5,10 +5,10 @@ using namespace std;
 
 int main() {
 
-    /*LinkedList<int> list;
+    LinkedList<int> list;
     Array<int> array;
-    Test(&list);
-    Test(&array);*/
+    Test(reinterpret_cast<Sequence<int> *>(&list));
+    Test(&array);
     cout << "\nAll tests compeleted successfully!\n\n";
 
     cout << "\n-~~~~==Hello!==~~~~-\n";

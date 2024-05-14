@@ -12,11 +12,11 @@ public:
 
     ~DynamicArray() = default;
 
-    size_t Size() const {
+    [[nodiscard]] size_t Size() const {
         return array.Size();
     }
 
-    size_t Capacity() const {
+    [[nodiscard]] size_t Capacity() const {
         return array.Capacity();
     }
 
@@ -43,8 +43,6 @@ public:
     const T &operator[](const size_t i) const {
         return array[i];
     }
-
-    //operators
 };
 
 template<typename T>
@@ -61,7 +59,7 @@ public:
         list = other.list;
     }
 
-    size_t Size() const {
+    [[nodiscard]] size_t Size() const {
         return list.Size();
     }
 
@@ -78,7 +76,19 @@ public:
     }
 
     T GetLast() const {
-        return list[list.size - 1];
+        return list[list.Size() - 1];
+    }
+
+    List<T> *GetSubList(size_t start, size_t end) {
+        return new List<T>(list.GetSubList(start, end));
+    }
+
+    [[nodiscard]] size_t GetLength() const {
+        return list.Size();
+    }
+
+    void PushFront(const T &value) {
+        list.Insert(0, value);
     }
 
     void PushBack(const T &value) {
@@ -97,5 +107,11 @@ public:
         list.Erase(index);
     }
 
-    //operators
+    LinkedList<T> &operator=(const List<T> &other) {
+        if (this != &other) {
+            list = other.list;
+        }
+        return *this;
+    }
+
 };

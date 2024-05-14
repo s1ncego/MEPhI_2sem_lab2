@@ -40,9 +40,45 @@ public:
         }
     }
 
-    size_t Size() const {
+    [[nodiscard]] size_t Size() const {
         return size;
     }
 
-    // operators
+    const T &operator[](const size_t i) const {
+        if (i >= size) {
+            throw std::out_of_range("Out of range");
+        }
+        Node *current = head;
+        for (size_t j = 0; j < i; ++j) {
+            current = current->next;
+        }
+        return current->value;
+    }
+
+    ImmutableLinkedList &operator=(const ImmutableLinkedList &other) {
+        if (this == &other) return *this;
+
+        while (head) {
+            Node *temp = head;
+            head = head->next;
+            delete temp;
+        }
+        size = 0;
+
+        Node *other_current = other.head;
+        Node *this_last = nullptr;
+        while (other_current) {
+            Node *new_node = new Node(other_current->value);
+            if (!head) {
+                head = new_node;
+            } else {
+                this_last->next = new_node;
+            }
+            this_last = new_node;
+            other_current = other_current->next;
+            ++size;
+        }
+
+        return *this;
+    }
 };

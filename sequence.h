@@ -7,7 +7,7 @@ class Sequence {
 public:
     virtual ~Sequence() = default;
 
-    virtual size_t Size() const = 0;
+    [[nodiscard]] virtual size_t Size() const = 0;
 
     virtual void Clear() = 0;
 
@@ -50,7 +50,7 @@ public:
         size = 0;
     }
 
-    size_t Size() const {
+    [[nodiscard]] size_t Size() const {
         return size;
     }
 
@@ -185,6 +185,16 @@ public:
         return *this >= list;
     }
 
+    friend std::ostream &operator<<(std::ostream &ostream, const List &list) {
+        ostream << "LinkedList's size is " << list.size << ", elements: ";
+        Node *current = list.head;
+        while (current) {
+            ostream << current->value << ", ";
+            current = current->next;
+        }
+        return ostream;
+    }
+
 };
 
 template<typename T>
@@ -205,11 +215,11 @@ public:
         delete[] value;
     }
 
-    size_t Size() const {
+    [[nodiscard]] size_t Size() const {
         return size;
     }
 
-    size_t Capacity() const {
+    [[nodiscard]] size_t Capacity() const {
         return capacity;
     }
 
@@ -331,8 +341,35 @@ public:
         return *this >= arr;
     }
 
+    Array &operator<<(const Array &it) {
+        size_t temp = size;
+        Resize(size + it.size_);
+        for (size_t i = temp; i < size; ++i) {
+            (*this)[i] = it[i - temp];
+        }
+        return *this;
+    }
+
+    friend std::ostream &operator<<(std::ostream &ostream, const Array &array) {
+        ostream << "Array's capacity is " << array.capacity << " and size: " << array.size
+                << ", elements: ";
+        for (size_t i = 0; i < array.size; ++i) {
+            ostream << array[i] << ", ";
+        }
+        return ostream;
+    }
+
 
 };
+
+template<typename T>
+std::ostream &operator<<(std::ostream &ostream, const Array<T> &array) {
+    ostream << "Array's capacity is " << array.capacity << " and size: " << array.size << ", elements are: ";
+    for (size_t i = 0; i < array.size; ++i) {
+        ostream << array[i] << ", ";
+    }
+    return ostream;
+}
 
 
 

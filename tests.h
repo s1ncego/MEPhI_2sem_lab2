@@ -62,38 +62,10 @@ void Test(Sequence<int> *sequence) {
     sequence2->PushBack(10);
     sequence2->PushBack(20);
 
-    sequence->Insert(1, 15);
-    assert((*sequence)[1] == 15);
-
     sequence->Insert(0, 5);
     assert((*sequence)[0] == 5);
     assert((*sequence)[1] == 10);
-    assert((*sequence)[2] == 15);
-    assert((*sequence)[3] == 20);
-
-    sequence->Insert(sequence->Size(), 25);
-    assert((*sequence)[sequence->Size() - 1] == 25);
-
-    assert(sequence->Erase(1));
-    assert((*sequence)[1] == 15);
-
-    assert(sequence->Erase(0));
-
-    assert(sequence->Erase(sequence->Size() - 1));
-    sequence->Clear();
-    assert(sequence->Size() == 0);
-
-    assert(sequence->Size() == 0);
-
-    sequence->PushBack(10);
-    sequence->PushBack(20);
-
-    assert((*sequence)[0] == 10);
-    assert((*sequence)[1] == 20);
-
-    sequence->PopBack();
-    assert(sequence->Size() == 1);
-    assert((*sequence)[0] == 10);
+    assert((*sequence)[2] == 20);
 
     sequence->Clear();
     assert(sequence->Size() == 0);

@@ -276,7 +276,7 @@ public:
         for (size_t i = size; i > index; --i) {
             value[i] = value[i - 1];
         }
-        value[index] = *value;
+        value[index] = val;
         size++;
     }
 

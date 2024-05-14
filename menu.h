@@ -52,7 +52,7 @@ void ArrayMenu() {
                 for (size_t i = 0; i < sequence->Size(); ++i) {
                     cout << (*sequence)[i] << " ";
                 }
-                cout << endl;
+                cout << "\n";
 
                 break;
             }

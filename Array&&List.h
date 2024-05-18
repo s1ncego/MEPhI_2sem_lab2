@@ -1,6 +1,13 @@
 #pragma once
 
 template<typename T>
+T helpFunc(T &value) {
+    value++;
+
+    return value;
+}
+
+template<typename T>
 class DynamicArray {
 private:
     Array<T> array;
@@ -36,12 +43,45 @@ public:
         array.PopBack();
     }
 
+    void Map(){
+        for (size_t i = 0; i < array.Size(); ++i) {
+            helpFunc(array[i]);
+        }
+    }
+
     T &operator[](const size_t i) {
         return array[i];
     }
 
     const T &operator[](const size_t i) const {
         return array[i];
+    }
+
+    class Iterator {
+    private:
+        const DynamicArray<T> &array;
+        size_t currentIndex;
+    public:
+        Iterator(const DynamicArray<T> &arr, size_t startIndex = 0) : array(arr), currentIndex(startIndex) {}
+
+        bool hasNext() const {
+            return currentIndex < array.Size();
+        }
+
+        T next() {
+            if (!hasNext()) {
+                throw std::out_of_range("Out of range!");
+            }
+            return array[currentIndex++];
+        }
+    };
+
+    Iterator begin() const {
+        return Iterator(*this);
+    }
+
+    Iterator end() const {
+        return Iterator(*this, *this->Size() - 1);
     }
 };
 
@@ -107,6 +147,12 @@ public:
         list.Erase(index);
     }
 
+    void Map(){
+        for (size_t i = 0; i < list.Size(); ++i) {
+            helpFunc(list[i]);
+        }
+    }
+
     LinkedList<T> &operator=(const List<T> &other) {
         if (this != &other) {
             list = other.list;
@@ -114,4 +160,30 @@ public:
         return *this;
     }
 
+    class Iterator {
+    private:
+        const LinkedList<T> &llist;
+        size_t currentIndex;
+    public:
+        Iterator(const LinkedList<T> &ll, size_t startIndex = 0) : llist(ll), currentIndex(startIndex) {}
+
+        bool hasNext() const {
+            return currentIndex < llist.Size();
+        }
+
+        T next() {
+            if (!hasNext()) {
+                throw std::out_of_range("Out of range!");
+            }
+            return llist[currentIndex++];
+        }
+    };
+
+    Iterator begin() const {
+        return Iterator(*this);
+    }
+
+    Iterator end() const {
+        return Iterator(*this, *this->Size() - 1);
+    }
 };

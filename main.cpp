@@ -9,7 +9,7 @@ int main() {
     Array<int> array;
     Test(reinterpret_cast<Sequence<int> *>(&list));
     Test(&array);
-    cout << "\nAll tests completed successfully!\n\n";
+    cout << "\nAll tests completed successfully!\n";
 
     cout << "\n-~~~~==Hello!==~~~~-\n";
     cout << "Press 0 to run Array menu, Press 1 to run LinkedList menu:\n";

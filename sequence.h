@@ -3,6 +3,13 @@
 #include <iostream>
 
 template<typename T>
+T helpFuncList(T &value) {
+    value++;
+
+    return value;
+}
+
+template<typename T>
 class Sequence {
 public:
     virtual ~Sequence() = default;
@@ -185,6 +192,12 @@ public:
         return *this >= list;
     }
 
+    void Map(List &list){
+        for (size_t i = 0; i < list.Size(); ++i) {
+            helpFuncList((*this)[i]);
+        }
+    }
+
     friend std::ostream &operator<<(std::ostream &ostream, const List &list) {
         ostream << "LinkedList's size is " << list.size << ", elements: ";
         Node *current = list.head;
@@ -264,7 +277,7 @@ public:
         if (size == 0) {
             throw std::out_of_range("Array is empty!");
         }
-        value[size - 1].~T();
+        value[size--].~T();
     }
 
     void Insert(size_t index, const T &val) {

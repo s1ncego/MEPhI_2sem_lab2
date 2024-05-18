@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include "sequence.h"
+#include "Array&&List.h"
 
 using namespace std;
 
@@ -13,8 +14,9 @@ void printArrayMenu() {
     cout << "  3. Remove element\n";
     cout << "  4. Insert element at index\n";
     cout << "  5. Erase element at index\n";
+    cout << "  6. Map\n";
     cout << "Enter 'STOP' to finish.\n";
-    cout << "Press 1-5 to choose the action:\n";
+    cout << "Press 1-6 to choose the action:\n";
 }
 
 void printLinkedListMenu() {
@@ -25,8 +27,9 @@ void printLinkedListMenu() {
     cout << "  3. Remove element\n";
     cout << "  4. Insert element at index\n";
     cout << "  5. Erase element at index\n";
+    cout << "  6. Map\n";
     cout << "Enter 'STOP' to finish.\n";
-    cout << "Press 1-5 to choose the action:\n";
+    cout << "Press 1-6 to choose the action:\n";
 }
 
 void ArrayMenu() {
@@ -49,8 +52,10 @@ void ArrayMenu() {
                     break;
                 }
                 cout << "Elements:\n";
-                for (size_t i = 0; i < sequence->Size(); ++i) {
-                    cout << (*sequence)[i] << " ";
+                auto dynarr = (DynamicArray<int> *) sequence;
+                auto iterator = dynarr->begin();
+                while (iterator.hasNext()) {
+                    cout << iterator.next() << " ";
                 }
                 cout << "\n";
 
@@ -90,6 +95,12 @@ void ArrayMenu() {
                 cout << "Enter index to erase: ";
                 cin >> index;
                 sequence->Erase(index);
+
+                break;
+            }
+            case 6:{
+                auto dynarr = (DynamicArray<int> *) sequence;
+                dynarr->Map();
 
                 break;
             }
@@ -166,6 +177,11 @@ void LinkedListMenu() {
                 } else {
                     sequence.Erase(index);
                 }
+
+                break;
+            }
+            case 6: {
+                sequence.Map(sequence);
 
                 break;
             }
